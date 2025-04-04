@@ -1,12 +1,55 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookService", "BookService", "{493BBDE6-43C1-4F20-99F5-9AB2A3014AEB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserService", "UserService", "{490CCF88-C80A-44C8-B660-754370A82372}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostService", "PostService", "{EF7E85D1-EF11-4BE2-BE45-253DD5BB3060}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{D2FF9F7A-0A48-41FB-ACEF-38859F19A082}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{1B29B2A3-E37C-4D06-BE47-FE72802B7849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Api", "BookService\BookService.Api\BookService.Api.csproj", "{D9312C62-575B-4288-9CAD-AC2706189B6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Application", "BookService\BookService.Application\BookService.Application.csproj", "{8AA13DF8-68DE-4819-AD1F-505C14563D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.DataAccess", "BookService\BookService.DataAccess\BookService.DataAccess.csproj", "{9F1183B6-1E3F-4182-A2B7-2A29B9D2354B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Core", "BookService\BookService.Core\BookService.Core.csproj", "{856791FC-EBE8-4D71-937C-71D99E17B4CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{1B29B2A3-E37C-4D06-BE47-FE72802B7849} = {D2FF9F7A-0A48-41FB-ACEF-38859F19A082}
+		{D9312C62-575B-4288-9CAD-AC2706189B6C} = {493BBDE6-43C1-4F20-99F5-9AB2A3014AEB}
+		{8AA13DF8-68DE-4819-AD1F-505C14563D3D} = {493BBDE6-43C1-4F20-99F5-9AB2A3014AEB}
+		{9F1183B6-1E3F-4182-A2B7-2A29B9D2354B} = {493BBDE6-43C1-4F20-99F5-9AB2A3014AEB}
+		{856791FC-EBE8-4D71-937C-71D99E17B4CD} = {493BBDE6-43C1-4F20-99F5-9AB2A3014AEB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B29B2A3-E37C-4D06-BE47-FE72802B7849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B29B2A3-E37C-4D06-BE47-FE72802B7849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B29B2A3-E37C-4D06-BE47-FE72802B7849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B29B2A3-E37C-4D06-BE47-FE72802B7849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9312C62-575B-4288-9CAD-AC2706189B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9312C62-575B-4288-9CAD-AC2706189B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9312C62-575B-4288-9CAD-AC2706189B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9312C62-575B-4288-9CAD-AC2706189B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA13DF8-68DE-4819-AD1F-505C14563D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA13DF8-68DE-4819-AD1F-505C14563D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA13DF8-68DE-4819-AD1F-505C14563D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA13DF8-68DE-4819-AD1F-505C14563D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F1183B6-1E3F-4182-A2B7-2A29B9D2354B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1183B6-1E3F-4182-A2B7-2A29B9D2354B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1183B6-1E3F-4182-A2B7-2A29B9D2354B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1183B6-1E3F-4182-A2B7-2A29B9D2354B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{856791FC-EBE8-4D71-937C-71D99E17B4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{856791FC-EBE8-4D71-937C-71D99E17B4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{856791FC-EBE8-4D71-937C-71D99E17B4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{856791FC-EBE8-4D71-937C-71D99E17B4CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
