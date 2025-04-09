@@ -45,3 +45,20 @@ appsettings.local.json
 
 # Исключения для конкретных случаев (если нужно)
 # !/src/ImportantFile.dll  # Раскомментируй и укажи, если нужно включить что-то исключенное выше
+
+# Kotlin и Android Studio
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
