@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.apiclient.bookstoreapp.MainActivity
 import com.apiclient.bookstoreapp.R
+import com.apiclient.bookstoreapp.presentation.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,6 +23,11 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText = findViewById<EditText>(R.id.etPassword)
         val loginButton = findViewById<Button>(R.id.btnLogin)
         val errorTextView = findViewById<TextView>(R.id.tvError)
+
+        val registerButton = findViewById<Button>(R.id.btnRegister)
+        registerButton.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
 
         viewModel.loginSuccess.observe(this) { success ->
             if (success) {
