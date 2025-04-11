@@ -1,4 +1,4 @@
-namespace PostApi.Core.Models;
+namespace PostService.Core.Models;
 
 public class Post
 {

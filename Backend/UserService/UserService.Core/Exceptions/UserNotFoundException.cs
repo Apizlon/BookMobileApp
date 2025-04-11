@@ -1,8 +1,8 @@
-﻿namespace UserApi.Core.Exceptions;
+﻿namespace UserService.Core.Exceptions;
 
 public class UserNotFoundException : NotFoundException
 {
-    public UserNotFoundException(int id) : base($"Книга с id {id} не найдена.")
+    public UserNotFoundException(int id) : base($"Пользователь с id {id} не найден.")
     {
         
     }

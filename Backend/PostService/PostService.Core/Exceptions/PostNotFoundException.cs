@@ -1,8 +1,8 @@
-﻿namespace PostApi.Core.Exceptions;
+﻿namespace PostService.Core.Exceptions;
 
 public class PostNotFoundException : NotFoundException
 {
-    public PostNotFoundException(int id) : base($"Книга с id {id} не найдена.")
+    public PostNotFoundException(int id) : base($"Пост с id {id} не найден.")
     {
         
     }
