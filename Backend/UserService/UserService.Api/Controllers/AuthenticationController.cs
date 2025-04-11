@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UserApi.Application.Interfaces;
-using UserApi.Core.Models;
-using UserApi.DataAccess;
+using UserService.Application.Interfaces;
+using UserService.Core.Models;
+using UserService.DataAccess;
 
-namespace UserApi.Api.Controllers;
+namespace UserService.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

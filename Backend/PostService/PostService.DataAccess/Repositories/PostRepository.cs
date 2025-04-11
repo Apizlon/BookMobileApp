@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using PostApi.Core.Models;
-using PostApi.DataAccess.Interfaces;
+using PostService.Core.Models;
+using PostService.DataAccess.Interfaces;
 
-namespace PostApi.DataAccess.Repositories;
+namespace PostService.DataAccess.Repositories;
 
 public class PostRepository : IPostRepository
 {

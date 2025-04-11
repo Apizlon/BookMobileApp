@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using PostApi.Core.Models;
+using PostService.Core.Models;
 
-namespace PostApi.DataAccess;
+namespace PostService.DataAccess;
 
 public class PostDbContext : DbContext
 {

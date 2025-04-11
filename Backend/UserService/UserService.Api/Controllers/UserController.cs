@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserApi.Application.Contracts;
-using UserApi.Application.Interfaces;
+using UserService.Application.Contracts;
+using UserService.Application.Interfaces;
 
-namespace UserApi.Api.Controllers;
+namespace UserService.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
