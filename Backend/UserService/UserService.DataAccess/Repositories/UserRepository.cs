@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UserApi.Core.Models;
-using UserApi.DataAccess.Interfaces;
+using UserService.Core.Models;
+using UserService.DataAccess.Interfaces;
 
-namespace UserApi.DataAccess.Repositories;
+namespace UserService.DataAccess.Repositories;
 
 public class UserRepository : IUserRepository
 {

@@ -1,4 +1,4 @@
-﻿namespace PostApi.Core.Exceptions;
+﻿namespace PostService.Core.Exceptions;
 
 public abstract class BadRequestException : Exception
 {

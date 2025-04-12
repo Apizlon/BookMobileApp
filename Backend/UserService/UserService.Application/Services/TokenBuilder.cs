@@ -2,9 +2,9 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using UserApi.Application.Interfaces;
+using UserService.Application.Interfaces;
 
-namespace UserApi.Application.Services;
+namespace UserService.Application.Services;
 
 public class TokenBuilder : ITokenBuilder
 {

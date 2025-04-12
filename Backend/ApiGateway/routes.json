@@ -3,26 +3,26 @@
     {
       "endpoint": "/Book",
       "destination": {
-        "uri": "https://localhost:7106/api/Book/",
+        "uri": "https://localhost:1339/api/Book/",
         "requiresAuthentication": "true"
       }
     },
     {
-      "endpoint": "/Authentication",
+      "endpoint": "/User",
       "destination": {
-        "uri": "https://localhost:7232/api/Authentication/",
+        "uri": "https://localhost:1338/api/User/",
         "requiresAuthentication": "false"
       }
     },
     {
-      "endpoint": "/posts",
+      "endpoint": "/Post",
       "destination": {
-        "uri": "http://localhost:8080/posts/",
+        "uri": "https://localhost:1340/api/Post/",
         "requiresAuthentication": "true"
       }
     }
   ],
   "authenticationService": {
-    "uri":  "https://localhost:7232/api/Authentication/verify"
+    "uri":  "https://localhost:1338/api/Authentication/verify"
   }
 }

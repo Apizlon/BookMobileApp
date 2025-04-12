@@ -1,7 +1,7 @@
-﻿using UserApi.Application.Contracts;
-using UserApi.Core.Models;
+﻿using UserService.Application.Contracts;
+using UserService.Core.Models;
 
-namespace UserApi.Application.Mappers;
+namespace UserService.Application.Mappers;
 
 public static class UserMapper
 {

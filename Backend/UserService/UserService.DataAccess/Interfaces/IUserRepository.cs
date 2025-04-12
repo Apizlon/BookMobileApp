@@ -1,6 +1,6 @@
-﻿using UserApi.Core.Models;
+﻿using UserService.Core.Models;
 
-namespace UserApi.DataAccess.Interfaces;
+namespace UserService.DataAccess.Interfaces;
 
 public interface IUserRepository
 {

@@ -1,4 +1,4 @@
-﻿namespace UserApi.Application.Contracts;
+﻿namespace UserService.Application.Contracts;
 
 public class UserRequest
 {

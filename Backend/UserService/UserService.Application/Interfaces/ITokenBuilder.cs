@@ -1,4 +1,4 @@
-﻿namespace UserApi.Application.Interfaces;
+﻿namespace UserService.Application.Interfaces;
 
 public interface ITokenBuilder
 {

@@ -1,4 +1,4 @@
-﻿namespace UserApi.Core.Models;
+﻿namespace UserService.Core.Models;
 
 public class User
 {

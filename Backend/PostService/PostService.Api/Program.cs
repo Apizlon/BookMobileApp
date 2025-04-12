@@ -1,11 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using PostApi.Api.Middlewares;
-using PostApi.Application.Interfaces;
-using PostApi.Application.Kafka;
-using PostApi.Application.Services;
-using PostApi.DataAccess;
-using PostApi.DataAccess.Interfaces;
-using PostApi.DataAccess.Repositories;
+using PostService.Api.Middlewares;
+using PostService.Application.Interfaces;
+using PostService.DataAccess;
+using PostService.DataAccess.Interfaces;
+using PostService.DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,9 +18,7 @@ builder.Services.AddDbContext<PostDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DatabaseConnection")));
 
 builder.Services.AddScoped<IPostRepository, PostRepository>();
-builder.Services.AddScoped<IPostService,PostService>();
-builder.Services.AddSingleton<IKafkaProducer>(new KafkaProducer("localhost:9092"));
-builder.Services.AddSingleton<IKafkaConsumer>(new KafkaConsumer("localhost:9092"));
+builder.Services.AddScoped<IPostService,PostService.Application.Services.PostService>();
 builder.Services.AddTransient<CustomExceptionHandlingMiddleware>();
 
 var app = builder.Build();
