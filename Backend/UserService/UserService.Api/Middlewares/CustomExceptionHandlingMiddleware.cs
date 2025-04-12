@@ -1,7 +1,6 @@
-﻿using System.Net;
-using UserApi.Core.Exceptions;
+﻿using UserService.Core.Exceptions;
 
-namespace UserApi.Api.Middlewares;
+namespace UserService.Api.Middlewares;
 
 internal class CustomExceptionHandlingMiddleware : IMiddleware
 {

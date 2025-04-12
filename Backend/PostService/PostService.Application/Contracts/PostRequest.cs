@@ -1,4 +1,4 @@
-namespace PostApi.Application.Contracts;
+namespace PostService.Application.Contracts;
 
 public class PostRequest
 {

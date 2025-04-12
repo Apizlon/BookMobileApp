@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using PostApi.Application.Contracts;
-using PostApi.Application.Interfaces;
+using PostService.Application.Contracts;
+using PostService.Application.Interfaces;
 
-namespace PostApi.Api.Controllers;
+namespace PostService.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -2,12 +2,12 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using UserApi.Api.Middlewares;
-using UserApi.Application.Interfaces;
-using UserApi.Application.Services;
-using UserApi.DataAccess;
-using UserApi.DataAccess.Interfaces;
-using UserApi.DataAccess.Repositories;
+using UserService.Api.Middlewares;
+using UserService.Application.Interfaces;
+using UserService.Application.Services;
+using UserService.DataAccess;
+using UserService.DataAccess.Interfaces;
+using UserService.DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +22,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DatabaseConnection")));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<IUserService,UserService.Application.Services.UserService>();
 ConfigureServices(builder.Services);
 builder.Services.AddTransient<CustomExceptionHandlingMiddleware>();
 

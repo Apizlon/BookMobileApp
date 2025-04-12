@@ -1,6 +1,6 @@
-using PostApi.Core.Models;
+using PostService.Core.Models;
 
-namespace PostApi.DataAccess.Interfaces;
+namespace PostService.DataAccess.Interfaces;
 
 public interface IPostRepository
 {

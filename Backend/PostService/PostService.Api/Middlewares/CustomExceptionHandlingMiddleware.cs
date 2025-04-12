@@ -1,6 +1,6 @@
-using PostApi.Core.Exceptions;
+using PostService.Core.Exceptions;
 
-namespace PostApi.Api.Middlewares;
+namespace PostService.Api.Middlewares;
 
 internal class CustomExceptionHandlingMiddleware : IMiddleware
 {

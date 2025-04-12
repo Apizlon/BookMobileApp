@@ -1,7 +1,7 @@
-using PostApi.Application.Contracts;
-using PostApi.Core.Models;
+using PostService.Application.Contracts;
+using PostService.Core.Models;
 
-namespace PostApi.Application.Mappers;
+namespace PostService.Application.Mappers;
 
 public static class PostMapper
 {
