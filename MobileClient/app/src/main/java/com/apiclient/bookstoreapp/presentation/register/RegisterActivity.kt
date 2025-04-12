@@ -12,7 +12,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
-            finish() // возвращаемся к LoginActivity
+            finish() // возвращаение к LoginActivity
         }
     }
 }
