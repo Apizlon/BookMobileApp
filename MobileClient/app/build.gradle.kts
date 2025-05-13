@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    // alias(libs.plugins.kotlin.compose)
+    // alias(libs.plugins.navigation.safeargs) // safe args
+    id("kotlin-parcelize")
 }
 
 android {
@@ -14,7 +15,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -35,7 +35,7 @@ android {
         jvmTarget = "17"
     }
     buildFeatures {
-        compose = false
+        viewBinding = true // Включение View Binding
     }
 }
 
@@ -44,23 +44,28 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // классические Material Components без Compose
+    // Material Components
     implementation("com.google.android.material:material:1.10.0")
 
-    // viewModels
+    // Activity и Fragment
     implementation("androidx.activity:activity-ktx:1.7.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
-    // constraintLayout
+    // ConstraintLayout
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // Retrofit для работы с REST
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // Kotlin Coroutines для асинхронных операций
+    // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    // Jetpack ViewModel и LiveData для MVVM
+    // ViewModel и LiveData
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 

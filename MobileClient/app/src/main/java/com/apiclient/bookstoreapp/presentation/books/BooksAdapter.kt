@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.apiclient.bookstoreapp.R
 import com.apiclient.bookstoreapp.domain.model.Book
 
-// адаптер для recyclerView (связывание данных о книгах с элементами списка)
-class BooksAdapter(private val books: List<Book>) :
-    RecyclerView.Adapter<BooksAdapter.BookViewHolder>() {
+class BooksAdapter(
+    private var books: List<Book>,
+    private val onBookClick: (Book) -> Unit
+) : RecyclerView.Adapter<BooksAdapter.BookViewHolder>() {
 
-    // отображение данных книги
     class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title = view.findViewById<TextView>(R.id.tvBookTitle)
-        val author = view.findViewById<TextView>(R.id.tvBookAuthor)
+        val title: TextView = view.findViewById(R.id.tvBookTitle)
+        val author: TextView = view.findViewById(R.id.tvBookAuthor)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -24,14 +24,19 @@ class BooksAdapter(private val books: List<Book>) :
         return BookViewHolder(view)
     }
 
-    override fun getItemCount(): Int = books.size
-
-    // привязка данных книги к каждому элементу списка
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book = books[position]
         holder.title.text = book.title
         holder.author.text = book.authorName
+        holder.itemView.setOnClickListener {
+            onBookClick(book)
+        }
+    }
 
-        // TODO: добавить setOnClickListener для редактирования
+    override fun getItemCount(): Int = books.size
+
+    fun updateBooks(newBooks: List<Book>) {
+        books = newBooks
+        notifyDataSetChanged()
     }
 }

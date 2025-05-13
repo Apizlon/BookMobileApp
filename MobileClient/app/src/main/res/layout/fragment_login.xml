@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#2c2c2d">
 
-    <!-- название проекта -->
     <TextView
         android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
@@ -17,11 +16,9 @@
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/etUsername"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- логин -->
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="0dp"
@@ -37,7 +34,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- пароль -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="0dp"
@@ -54,7 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- сообщение об ошибке -->
     <TextView
         android:id="@+id/tvError"
         android:layout_width="0dp"
@@ -68,7 +63,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- кнопка логина -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
@@ -83,7 +77,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- текст перед регистрацией -->
     <TextView
         android:id="@+id/tvNoAccount"
         android:layout_width="wrap_content"
@@ -96,7 +89,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- кнопка регистрации -->
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
