@@ -2,7 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configure logging
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole(); // Добавляем поддержку консоли
+builder.Logging.AddConsole(); // Р”РѕР±Р°РІР»СЏРµРј РїРѕРґРґРµСЂР¶РєСѓ РєРѕРЅСЃРѕР»Рё
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();

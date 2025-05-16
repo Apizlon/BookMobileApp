@@ -13,7 +13,7 @@ public class BookRepository : IBookRepository
     private readonly string _dbConnection;
     public BookRepository(IConfiguration configuration)
     {
-        _dbConnection = configuration.GetConnectionString("DatabaseConnection");
+        _dbConnection = configuration.GetConnectionString("DefaultConnection");
     }
     
     private async Task<DbConnection> CreateConnectionAsync()

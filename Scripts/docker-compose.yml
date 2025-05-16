@@ -1,0 +1,83 @@
+version: '3.9'
+
+services:
+  bookservice:
+    image: bookservice:latest
+    build:
+      context: ..
+      dockerfile: Scripts/Dockerfile.BookService
+    ports:
+      - "1339:1339"
+      - "1402:1402"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=bookdb;Username=postgres;Password=postgres
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  gateway:
+    image: gateway:latest
+    build:
+      context: ..
+      dockerfile: Scripts/Dockerfile.Gateway
+    ports:
+      - "1337:1337"
+      - "1400:1400"
+    depends_on:
+      - bookservice
+      - postservice
+      - userservice
+    networks:
+      - app-network
+
+  postservice:
+    image: postservice:latest
+    build:
+      context: ..
+      dockerfile: Scripts/Dockerfile.PostService
+    ports:
+      - "1340:1340"
+      - "1403:1403"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=postdb;Username=postgres;Password=postgres
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  userservice:
+    image: userservice:latest
+    build:
+      context: ..
+      dockerfile: Scripts/Dockerfile.UserService
+    ports:
+      - "1338:1338"
+      - "1401:1401"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=userdb;Username=postgres;Password=postgres
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_MULTIPLE_DATABASES=bookdb,postdb,userdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:

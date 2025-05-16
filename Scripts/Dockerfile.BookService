@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
+
+# Copy the solution and restore dependencies
+COPY Backend/BookService/BookService.Api/BookService.Api.csproj ./BookService.Api/
+COPY Backend/BookService/BookService.Application/BookService.Application.csproj ./BookService.Application/
+COPY Backend/BookService/BookService.Core/BookService.Core.csproj ./BookService.Core/
+COPY Backend/BookService/BookService.DataAccess/BookService.DataAccess.csproj ./BookService.DataAccess/
+RUN dotnet restore ./BookService.Api/BookService.Api.csproj
+
+# Copy the rest of the code and build
+COPY Backend/BookService/BookService.Api/ ./BookService.Api/
+COPY Backend/BookService/BookService.Application/ ./BookService.Application/
+COPY Backend/BookService/BookService.Core/ ./BookService.Core/
+COPY Backend/BookService/BookService.DataAccess/ ./BookService.DataAccess/
+WORKDIR /app/BookService.Api
+RUN dotnet publish -c Debug -o out
+
+# Use the runtime image to run the app
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/BookService.Api/out ./
+EXPOSE 1339
+ENV ASPNETCORE_HTTP_PORTS=1339
+ENTRYPOINT ["dotnet", "BookService.Api.dll"]

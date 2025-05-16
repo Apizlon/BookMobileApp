@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
+
+# Copy the solution and restore dependencies
+COPY Backend/PostService/PostService.Api/PostService.Api.csproj ./PostService.Api/
+COPY Backend/PostService/PostService.Application/PostService.Application.csproj ./PostService.Application/
+COPY Backend/PostService/PostService.Core/PostService.Core.csproj ./PostService.Core/
+COPY Backend/PostService/PostService.DataAccess/PostService.DataAccess.csproj ./PostService.DataAccess/
+RUN dotnet restore ./PostService.Api/PostService.Api.csproj
+
+# Copy the rest of the code and build
+COPY Backend/PostService/PostService.Api/ ./PostService.Api/
+COPY Backend/PostService/PostService.Application/ ./PostService.Application/
+COPY Backend/PostService/PostService.Core/ ./PostService.Core/
+COPY Backend/PostService/PostService.DataAccess/ ./PostService.DataAccess/
+WORKDIR /app/PostService.Api
+RUN dotnet publish -c Debug -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/PostService.Api/out ./
+EXPOSE 1340
+ENV ASPNETCORE_HTTP_PORTS=1340
+ENTRYPOINT ["dotnet", "PostService.Api.dll"]
