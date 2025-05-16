@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.apiclient.bookstoreapp.databinding.FragmentCrudBookBinding
-import com.apiclient.bookstoreapp.domain.model.Book
+import com.apiclient.bookstoreapp.domain.model.BookResponse
 
 class CrudBookFragment : Fragment() {
 
@@ -33,18 +33,19 @@ class CrudBookFragment : Fragment() {
         }
 
         // Заполнение полей для редактирования
-        val book: Book? = arguments?.getParcelable("book")
+        val book: BookResponse? = arguments?.getParcelable("book")
         book?.let {
-            binding.etBookTitle.setText(it.title)
-            binding.etBookAuthor.setText(it.authorName)
+            binding.etBookName.setText(it.name)
+            binding.etBookAuthor.setText(it.author)
         }
 
         // Обработка кнопки "Сохранить"
         binding.btnSaveBook.setOnClickListener {
-            val title = binding.etBookTitle.text.toString()
-            val authorName = binding.etBookAuthor.text.toString()
-            if (title.isNotBlank() && authorName.isNotBlank()) {
-                viewModel.saveBook(book?.copy(title = title, authorName = authorName) ?: Book(0, title, authorName))
+            val name = binding.etBookName.text.toString()
+            val description = binding.etBookDescription.text.toString()
+            val author = binding.etBookAuthor.text.toString()
+            if (name.isNotBlank() && author.isNotBlank()) {
+                viewModel.saveBook(name, description, author, book?.id ?: 0L)
                 findNavController().popBackStack()
             }
         }

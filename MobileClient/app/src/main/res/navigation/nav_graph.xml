@@ -54,7 +54,7 @@
             app:popExitAnim="@anim/slide_out_right">
             <argument
                 android:name="book"
-                app:argType="com.apiclient.bookstoreapp.domain.model.Book"
+                app:argType="com.apiclient.bookstoreapp.domain.model.BookResponse"
                 app:nullable="true" />
         </action>
     </fragment>

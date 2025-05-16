@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.apiclient.bookstoreapp.R
-import com.apiclient.bookstoreapp.domain.model.Book
+import com.apiclient.bookstoreapp.domain.model.BookResponse
 
 class BooksAdapter(
-    private var books: List<Book>,
-    private val onBookClick: (Book) -> Unit
+    private var books: List<BookResponse>,
+    private val onBookClick: (BookResponse) -> Unit
 ) : RecyclerView.Adapter<BooksAdapter.BookViewHolder>() {
 
     class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title: TextView = view.findViewById(R.id.tvBookTitle)
+        val name: TextView = view.findViewById(R.id.tvBookName)
+        val description: TextView = view.findViewById(R.id.tvBookDescription)
         val author: TextView = view.findViewById(R.id.tvBookAuthor)
     }
 
@@ -26,8 +27,9 @@ class BooksAdapter(
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book = books[position]
-        holder.title.text = book.title
-        holder.author.text = book.authorName
+        holder.name.text = book.name
+        holder.author.text = book.author
+        holder.description.text = book.description
         holder.itemView.setOnClickListener {
             onBookClick(book)
         }
@@ -35,7 +37,7 @@ class BooksAdapter(
 
     override fun getItemCount(): Int = books.size
 
-    fun updateBooks(newBooks: List<Book>) {
+    fun updateBooks(newBooks: List<BookResponse>) {
         books = newBooks
         notifyDataSetChanged()
     }

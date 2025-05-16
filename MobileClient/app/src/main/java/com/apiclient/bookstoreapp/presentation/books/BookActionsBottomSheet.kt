@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.apiclient.bookstoreapp.R
 import com.apiclient.bookstoreapp.databinding.BottomSheetBookActionsBinding
+import com.apiclient.bookstoreapp.domain.model.BookResponse
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BookActionsBottomSheet : BottomSheetDialogFragment() {
@@ -25,18 +26,28 @@ class BookActionsBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val book: BookResponse? = arguments?.getParcelable("book")
+
         binding.btnCreateBook.setOnClickListener {
             findNavController().navigate(R.id.action_books_to_crudBook)
             dismiss()
         }
 
         binding.btnEditBook.setOnClickListener {
-            // Для редактирования требуется выбрать книгу, пока заглушка
+            book?.let {
+                val bundle = Bundle().apply {
+                    putParcelable("book", it)
+                }
+                findNavController().navigate(R.id.action_books_to_crudBook, bundle)
+            }
             dismiss()
         }
 
         binding.btnDeleteBook.setOnClickListener {
-            // Для удаления требуется выбрать книгу, пока заглушка
+            book?.let {
+                val parentFragment = parentFragment as? BooksFragment
+                parentFragment?.viewModel?.deleteBook(it.id)
+            }
             dismiss()
         }
     }
@@ -44,5 +55,15 @@ class BookActionsBottomSheet : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        fun newInstance(book: BookResponse? = null): BookActionsBottomSheet {
+            return BookActionsBottomSheet().apply {
+                arguments = Bundle().apply {
+                    putParcelable("book", book)
+                }
+            }
+        }
     }
 }

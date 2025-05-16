@@ -5,14 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apiclient.bookstoreapp.data.repo.BookRepository
-import com.apiclient.bookstoreapp.domain.model.Book
+import com.apiclient.bookstoreapp.domain.model.BookRequest
+import com.apiclient.bookstoreapp.domain.model.BookResponse
 import kotlinx.coroutines.launch
 
 class BooksViewModel : ViewModel() {
 
     private val repository = BookRepository()
-    private val _books = MutableLiveData<List<Book>>()
-    val books: LiveData<List<Book>> get() = _books
+    private val _books = MutableLiveData<List<BookResponse>>()
+    val books: LiveData<List<BookResponse>> get() = _books
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
@@ -28,15 +29,16 @@ class BooksViewModel : ViewModel() {
         }
     }
 
-    fun saveBook(book: Book) {
+    fun saveBook(name: String, description: String, author: String, id: Long = 0L) {
         viewModelScope.launch {
             try {
-                if (book.id == 0L) {
-                    repository.createBook(book)
+                val bookRequest = BookRequest(name, description, author)
+                if (id == 0L) {
+                    repository.createBook(bookRequest)
                 } else {
-                    repository.updateBook(book)
+                    repository.updateBook(id, bookRequest)
                 }
-                fetchBooks() // Обновление списка после сохранения
+                fetchBooks()
             } catch (e: Exception) {
                 _error.postValue(e.message)
             }
@@ -47,7 +49,7 @@ class BooksViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 repository.deleteBook(id)
-                fetchBooks() // Обновление списка после удаления
+                fetchBooks()
             } catch (e: Exception) {
                 _error.postValue(e.message)
             }

@@ -11,12 +11,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apiclient.bookstoreapp.R
 import com.apiclient.bookstoreapp.databinding.FragmentBooksBinding
+import com.apiclient.bookstoreapp.domain.model.BookResponse
 
 class BooksFragment : Fragment() {
 
     private var _binding: FragmentBooksBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: BooksViewModel by viewModels()
+    val viewModel: BooksViewModel by viewModels()
     private lateinit var adapter: BooksAdapter
 
     override fun onCreateView(
@@ -37,10 +38,8 @@ class BooksFragment : Fragment() {
 
         // Настройка RecyclerView
         adapter = BooksAdapter(emptyList()) { book ->
-            val bundle = Bundle().apply {
-                putParcelable("book", book)
-            }
-            findNavController().navigate(R.id.action_books_to_crudBook, bundle)
+            BookActionsBottomSheet.newInstance(book)
+                .show(parentFragmentManager, "BookActionsBottomSheet")
         }
         binding.recyclerBooks.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerBooks.adapter = adapter
@@ -57,7 +56,8 @@ class BooksFragment : Fragment() {
 
         // Обработка кнопки "+"
         binding.btnAddBook.setOnClickListener {
-            BookActionsBottomSheet().show(parentFragmentManager, "BookActionsBottomSheet")
+            BookActionsBottomSheet.newInstance()
+                .show(parentFragmentManager, "BookActionsBottomSheet")
         }
 
         // Загрузка книг
