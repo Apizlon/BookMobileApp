@@ -4,15 +4,15 @@ import com.apiclient.bookstoreapp.domain.model.Book
 import retrofit2.http.*
 
 interface ApiService {
-    @GET("api/books")
+    @GET("Book")
     suspend fun getBooks(): List<Book>
 
-    @POST("api/books")
+    @POST("Book")
     suspend fun createBook(@Body book: Book): Book
 
-    @PUT("api/books/{id}")
+    @PUT("Book/{id}")
     suspend fun updateBook(@Path("id") id: Long, @Body book: Book): Book
 
-    @DELETE("api/books/{id}")
+    @DELETE("Book/{id}")
     suspend fun deleteBook(@Path("id") id: Long)
 }

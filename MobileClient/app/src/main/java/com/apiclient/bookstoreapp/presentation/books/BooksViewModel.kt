@@ -13,6 +13,8 @@ class BooksViewModel : ViewModel() {
     private val repository = BookRepository()
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> get() = _books
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
 
     fun fetchBooks() {
         viewModelScope.launch {
@@ -20,6 +22,7 @@ class BooksViewModel : ViewModel() {
                 val bookList = repository.getBooks()
                 _books.postValue(bookList)
             } catch (e: Exception) {
+                _error.postValue(e.message)
                 _books.postValue(emptyList())
             }
         }
@@ -33,9 +36,20 @@ class BooksViewModel : ViewModel() {
                 } else {
                     repository.updateBook(book)
                 }
-                fetchBooks() // обновление списка после сохранения
+                fetchBooks() // Обновление списка после сохранения
             } catch (e: Exception) {
-                // TODO: Обработать ошибку
+                _error.postValue(e.message)
+            }
+        }
+    }
+
+    fun deleteBook(id: Long) {
+        viewModelScope.launch {
+            try {
+                repository.deleteBook(id)
+                fetchBooks() // Обновление списка после удаления
+            } catch (e: Exception) {
+                _error.postValue(e.message)
             }
         }
     }
