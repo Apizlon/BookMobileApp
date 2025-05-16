@@ -25,9 +25,18 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Настройка кнопки "Назад"
+        binding.ivBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.btnRegister.setOnClickListener {
-            // заглушка: переход в главное меню
-            findNavController().navigate(R.id.action_register_to_main_menu)
+            val username = binding.etUsername.text.toString()
+            val password = binding.etPassword.text.toString()
+            // Заглушка: валидация регистрации
+            if (username.isNotBlank() && password.length >= 6) {
+                findNavController().navigate(R.id.action_register_to_books)
+            }
         }
     }
 

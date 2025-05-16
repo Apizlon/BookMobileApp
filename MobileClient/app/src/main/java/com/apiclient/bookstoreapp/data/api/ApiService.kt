@@ -1,18 +1,19 @@
 package com.apiclient.bookstoreapp.data.api
 
-import com.apiclient.bookstoreapp.domain.model.Book
+import com.apiclient.bookstoreapp.domain.model.BookRequest
+import com.apiclient.bookstoreapp.domain.model.BookResponse
 import retrofit2.http.*
 
 interface ApiService {
-    @GET("api/books")
-    suspend fun getBooks(): List<Book>
+    @GET("Book")
+    suspend fun getBooks(): List<BookResponse>
 
-    @POST("api/books")
-    suspend fun createBook(@Body book: Book): Book
+    @POST("Book")
+    suspend fun createBook(@Body book: BookRequest): BookResponse
 
-    @PUT("api/books/{id}")
-    suspend fun updateBook(@Path("id") id: Long, @Body book: Book): Book
+    @PUT("Book/{id}")
+    suspend fun updateBook(@Path("id") id: Long, @Body book: BookRequest): BookResponse
 
-    @DELETE("api/books/{id}")
+    @DELETE("Book/{id}")
     suspend fun deleteBook(@Path("id") id: Long)
 }

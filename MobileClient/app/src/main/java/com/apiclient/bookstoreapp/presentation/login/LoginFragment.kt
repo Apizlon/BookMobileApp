@@ -31,9 +31,9 @@ class LoginFragment : Fragment() {
             val username = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
             if (viewModel.validateLogin(username, password)) {
-                findNavController().navigate(R.id.action_login_to_main_menu)
+                findNavController().navigate(R.id.action_login_to_books)
             } else {
-                binding.tvError.text = "Неверный логин или пароль"
+                binding.tvError.text = "Invalid username or password"
             }
         }
 
