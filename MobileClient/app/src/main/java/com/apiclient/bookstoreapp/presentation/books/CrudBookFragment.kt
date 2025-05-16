@@ -36,6 +36,7 @@ class CrudBookFragment : Fragment() {
         val book: BookResponse? = arguments?.getParcelable("book")
         book?.let {
             binding.etBookName.setText(it.name)
+            binding.etBookDescription.setText(it.description)
             binding.etBookAuthor.setText(it.author)
         }
 

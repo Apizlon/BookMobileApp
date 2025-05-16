@@ -8,6 +8,7 @@ import com.apiclient.bookstoreapp.data.repo.BookRepository
 import com.apiclient.bookstoreapp.domain.model.BookRequest
 import com.apiclient.bookstoreapp.domain.model.BookResponse
 import kotlinx.coroutines.launch
+import android.util.Log
 
 class BooksViewModel : ViewModel() {
 
@@ -21,9 +22,11 @@ class BooksViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val bookList = repository.getBooks()
+                Log.d("BooksViewModel", "Fetched ${bookList.size} books: ${bookList.map { it.id }}")
                 _books.postValue(bookList)
             } catch (e: Exception) {
-                _error.postValue(e.message)
+                Log.e("BooksViewModel", "Error fetching books: ${e.message}", e)
+                _error.postValue("Failed to fetch books: ${e.message}")
                 _books.postValue(emptyList())
             }
         }
@@ -35,12 +38,15 @@ class BooksViewModel : ViewModel() {
                 val bookRequest = BookRequest(name, description, author)
                 if (id == 0L) {
                     repository.createBook(bookRequest)
+                    Log.d("BooksViewModel", "Created book: $name")
                 } else {
                     repository.updateBook(id, bookRequest)
+                    Log.d("BooksViewModel", "Updated book: $id")
                 }
                 fetchBooks()
             } catch (e: Exception) {
-                _error.postValue(e.message)
+                Log.e("BooksViewModel", "Error saving book: ${e.message}", e)
+                _error.postValue("Failed to save book: ${e.message}")
             }
         }
     }
@@ -49,9 +55,11 @@ class BooksViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 repository.deleteBook(id)
+                Log.d("BooksViewModel", "Deleted book: $id")
                 fetchBooks()
             } catch (e: Exception) {
-                _error.postValue(e.message)
+                Log.e("BooksViewModel", "Error deleting book: ${e.message}", e)
+                _error.postValue("Failed to delete book: ${e.message}")
             }
         }
     }

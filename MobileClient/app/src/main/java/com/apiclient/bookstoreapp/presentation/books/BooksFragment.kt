@@ -56,8 +56,7 @@ class BooksFragment : Fragment() {
 
         // Обработка кнопки "+"
         binding.btnAddBook.setOnClickListener {
-            BookActionsBottomSheet.newInstance()
-                .show(parentFragmentManager, "BookActionsBottomSheet")
+            findNavController().navigate(R.id.action_books_to_crudBook)
         }
 
         // Загрузка книг
