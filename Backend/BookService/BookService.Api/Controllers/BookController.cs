@@ -22,6 +22,13 @@ public class BookController : ControllerBase
         return Ok(bookId);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAllBooks()
+    {
+        var booksResponse = await _bookService.GetAllBooksAsync();
+        return Ok(booksResponse);
+    }
+    
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetBook(int id)
     {
