@@ -8,47 +8,60 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.apiclient.bookstoreapp.presentation.login.LoginFragment"
-        android:label="Login">
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_register"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_login_to_main_menu"
-            app:destination="@id/mainMenuFragment" />
+            android:id="@+id/action_login_to_books"
+            app:destination="@id/booksFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.apiclient.bookstoreapp.presentation.register.RegisterFragment"
-        android:label="Register">
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_register_to_main_menu"
-            app:destination="@id/mainMenuFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/mainMenuFragment"
-        android:name="com.apiclient.bookstoreapp.presentation.menu.MainMenuFragment"
-        android:label="Main Menu">
-        <action
-            android:id="@+id/action_main_menu_to_books"
-            app:destination="@id/booksFragment" />
-        <action
-            android:id="@+id/action_main_menu_to_crud_book"
-            app:destination="@id/crudBookFragment" />
+            android:id="@+id/action_register_to_books"
+            app:destination="@id/booksFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/booksFragment"
         android:name="com.apiclient.bookstoreapp.presentation.books.BooksFragment"
-        android:label="Books">
+        android:label="Books"
+        tools:layout="@layout/fragment_books">
         <action
             android:id="@+id/action_books_to_crudBook"
-            app:destination="@id/crudBookFragment" />
+            app:destination="@id/crudBookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="book"
+                app:argType="com.apiclient.bookstoreapp.domain.model.Book"
+                app:nullable="true" />
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/crudBookFragment"
         android:name="com.apiclient.bookstoreapp.presentation.books.CrudBookFragment"
-        android:label="Crud Book" />
+        android:label="Book Details"
+        tools:layout="@layout/fragment_crud_book" />
 </navigation>

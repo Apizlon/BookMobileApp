@@ -27,13 +27,19 @@ class CrudBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Pre-fill fields if editing
+        // Настройка кнопки "Назад"
+        binding.ivBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        // Заполнение полей для редактирования
         val book: Book? = arguments?.getParcelable("book")
         book?.let {
             binding.etBookTitle.setText(it.title)
             binding.etBookAuthor.setText(it.authorName)
         }
 
+        // Обработка кнопки "Сохранить"
         binding.btnSaveBook.setOnClickListener {
             val title = binding.etBookTitle.text.toString()
             val authorName = binding.etBookAuthor.text.toString()

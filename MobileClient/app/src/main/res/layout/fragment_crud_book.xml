@@ -4,43 +4,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2c2c2d"
+    android:background="@color/background"
     android:padding="24dp">
 
-    <EditText
-        android:id="@+id/etBookTitle"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Название книги"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#AAAAAA"
-        android:backgroundTint="#6A1B9A"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Back"
+        android:padding="8dp"
+        app:tint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Details"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
-    <EditText
-        android:id="@+id/etBookAuthor"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBookTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBookTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Book Title"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBookAuthor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Автор"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#AAAAAA"
-        android:backgroundTint="#6A1B9A"
-        app:layout_constraintTop_toBottomOf="@id/etBookTitle"
+        app:layout_constraintTop_toBottomOf="@id/tilBookTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBookAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Author"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnSaveBook"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Сохранить"
-        android:backgroundTint="#AB47BC"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/etBookAuthor"
+        android:text="Save"
+        app:layout_constraintTop_toBottomOf="@id/tilBookAuthor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

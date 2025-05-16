@@ -29,7 +29,12 @@ class BooksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Setup RecyclerView
+        // Настройка кнопки "Назад"
+        binding.ivBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        // Настройка RecyclerView
         adapter = BooksAdapter(emptyList()) { book ->
             val bundle = Bundle().apply {
                 putParcelable("book", book)
@@ -39,17 +44,17 @@ class BooksFragment : Fragment() {
         binding.recyclerBooks.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerBooks.adapter = adapter
 
-        // Observe books from ViewModel
+        // Наблюдение за книгами
         viewModel.books.observe(viewLifecycleOwner) { books ->
             adapter.updateBooks(books)
         }
 
-        // Handle add button click
+        // Обработка кнопки "+"
         binding.btnAddBook.setOnClickListener {
-            findNavController().navigate(R.id.action_books_to_crudBook)
+            BookActionsBottomSheet().show(parentFragmentManager, "BookActionsBottomSheet")
         }
 
-        // Fetch books
+        // Загрузка книг
         viewModel.fetchBooks()
     }
 
