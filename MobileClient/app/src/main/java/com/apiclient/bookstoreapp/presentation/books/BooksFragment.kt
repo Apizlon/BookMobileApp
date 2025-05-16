@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apiclient.bookstoreapp.R
 import com.apiclient.bookstoreapp.databinding.FragmentBooksBinding
-import com.apiclient.bookstoreapp.domain.model.BookResponse
+import android.util.Log
 
 class BooksFragment : Fragment() {
 
@@ -36,8 +36,14 @@ class BooksFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        // Настройка кнопки "Обновить"
+        binding.ivRefresh.setOnClickListener {
+            Log.d("BooksFragment", "Refresh button clicked")
+            viewModel.fetchBooks()
+        }
+
         // Настройка RecyclerView
-        adapter = BooksAdapter(emptyList()) { book ->
+        adapter = BooksAdapter(mutableListOf()) { book ->
             BookActionsBottomSheet.newInstance(book)
                 .show(parentFragmentManager, "BookActionsBottomSheet")
         }
@@ -46,11 +52,14 @@ class BooksFragment : Fragment() {
 
         // Наблюдение за книгами
         viewModel.books.observe(viewLifecycleOwner) { books ->
+            Log.d("BooksFragment", "Updating books: ${books.map { it.id }}")
             adapter.updateBooks(books)
+            binding.recyclerBooks.invalidate() // Принудительное обновление
         }
 
         // Наблюдение за ошибками
         viewModel.error.observe(viewLifecycleOwner) { error ->
+            Log.d("BooksFragment", "Error received: $error")
             Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
         }
 

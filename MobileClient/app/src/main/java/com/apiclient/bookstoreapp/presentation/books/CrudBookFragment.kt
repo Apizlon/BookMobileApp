@@ -46,7 +46,7 @@ class CrudBookFragment : Fragment() {
             val description = binding.etBookDescription.text.toString()
             val author = binding.etBookAuthor.text.toString()
             if (name.isNotBlank() && author.isNotBlank()) {
-                viewModel.saveBook(name, description, author, book?.id ?: 0L)
+                viewModel.saveBook(name, description, author, book?.id ?: 0)
                 findNavController().popBackStack()
             }
         }

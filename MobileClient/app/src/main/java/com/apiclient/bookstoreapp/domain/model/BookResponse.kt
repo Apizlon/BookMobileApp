@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class BookResponse(
     @SerializedName("id")
-    val id: Long,
+    val id: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("description")

@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_back"
-                android:contentDescription="Back"
+                android:contentDescription="Назад"
                 android:padding="8dp"
                 app:tint="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
@@ -36,14 +36,26 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Books"
+                android:text="Книги"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="8dp" />
+                app:layout_constraintStart_toEndOf="@id/ivBack"
+                app:layout_constraintEnd_toStartOf="@id/ivRefresh"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="8dp" />
+
+            <ImageView
+                android:id="@+id/ivRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_rotate"
+                android:contentDescription="Обновить"
+                android:padding="8dp"
+                app:tint="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerBooks"
@@ -62,7 +74,7 @@
         android:id="@+id/btnAddBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Add Book"
+        android:contentDescription="Добавить книгу"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="@color/secondary"
         app:fabSize="normal"

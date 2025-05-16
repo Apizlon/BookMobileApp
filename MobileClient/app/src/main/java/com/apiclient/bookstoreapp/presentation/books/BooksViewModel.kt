@@ -18,27 +18,30 @@ class BooksViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
+    // используем корутины
     fun fetchBooks() {
-        viewModelScope.launch {
+        viewModelScope.launch { // launch создается корутину для выполнения get запроса через getBooks
             try {
                 val bookList = repository.getBooks()
                 Log.d("BooksViewModel", "Fetched ${bookList.size} books: ${bookList.map { it.id }}")
-                _books.postValue(bookList)
+
+                 // postValue используется для обновления LiveData в основном потоке
+                _books.postValue(bookList.toList()) // Создаём новый список
             } catch (e: Exception) {
                 Log.e("BooksViewModel", "Error fetching books: ${e.message}", e)
-                _error.postValue("Failed to fetch books: ${e.message}")
+                _error.postValue("Не удалось загрузить книги: ${e.message}")
                 _books.postValue(emptyList())
             }
         }
     }
 
-    fun saveBook(name: String, description: String, author: String, id: Long = 0L) {
+    fun saveBook(name: String, description: String, author: String, id: Int = 0) {
         viewModelScope.launch {
             try {
                 val bookRequest = BookRequest(name, description, author)
-                if (id == 0L) {
-                    repository.createBook(bookRequest)
-                    Log.d("BooksViewModel", "Created book: $name")
+                if (id == 0) {
+                    val newBookId = repository.createBook(bookRequest)
+                    Log.d("BooksViewModel", "Created book: $name with ID: $newBookId")
                 } else {
                     repository.updateBook(id, bookRequest)
                     Log.d("BooksViewModel", "Updated book: $id")
@@ -46,12 +49,12 @@ class BooksViewModel : ViewModel() {
                 fetchBooks()
             } catch (e: Exception) {
                 Log.e("BooksViewModel", "Error saving book: ${e.message}", e)
-                _error.postValue("Failed to save book: ${e.message}")
+                _error.postValue("Не удалось сохранить книгу: ${e.message}")
             }
         }
     }
 
-    fun deleteBook(id: Long) {
+    fun deleteBook(id: Int) {
         viewModelScope.launch {
             try {
                 repository.deleteBook(id)
@@ -59,7 +62,7 @@ class BooksViewModel : ViewModel() {
                 fetchBooks()
             } catch (e: Exception) {
                 Log.e("BooksViewModel", "Error deleting book: ${e.message}", e)
-                _error.postValue("Failed to delete book: ${e.message}")
+                _error.postValue("Не удалось удалить книгу: ${e.message}")
             }
         }
     }

@@ -5,12 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.apiclient.bookstoreapp.R
 import com.apiclient.bookstoreapp.domain.model.BookResponse
 
 class BooksAdapter(
-    private var books: List<BookResponse>,
+    private var books: MutableList<BookResponse>,
     private val onMenuClick: (BookResponse) -> Unit
 ) : RecyclerView.Adapter<BooksAdapter.BookViewHolder>() {
 
@@ -40,7 +41,24 @@ class BooksAdapter(
     override fun getItemCount(): Int = books.size
 
     fun updateBooks(newBooks: List<BookResponse>) {
-        books = newBooks
-        notifyDataSetChanged()
+        val diffCallback = BookDiffCallback(books, newBooks)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        books.clear()
+        books.addAll(newBooks)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
+    private class BookDiffCallback(
+        private val oldList: List<BookResponse>,
+        private val newList: List<BookResponse>
+    ) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].id == newList[newItemPosition].id
+        }
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
     }
 }

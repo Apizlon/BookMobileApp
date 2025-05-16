@@ -10,6 +10,7 @@ class BookRepository {
 
     private val apiService = RetrofitClient.apiService
 
+    // suspend позволяет вызывать метод асинхронно
     suspend fun getBooks(): List<BookResponse> {
         return try {
             apiService.getBooks()
@@ -30,8 +31,8 @@ class BookRepository {
         }
     }
 
-    suspend fun updateBook(id: Long, book: BookRequest): BookResponse {
-        return try {
+    suspend fun updateBook(id: Int, book: BookRequest) {
+        try {
             apiService.updateBook(id, book)
         } catch (e: HttpException) {
             throw Exception("HTTP error: ${e.code()} - ${e.message()}")
@@ -40,7 +41,7 @@ class BookRepository {
         }
     }
 
-    suspend fun deleteBook(id: Long) {
+    suspend fun deleteBook(id: Int) {
         try {
             apiService.deleteBook(id)
         } catch (e: HttpException) {
