@@ -32,6 +32,12 @@ public class BookService : IBookService
         await _bookRepository.DeleteBookAsync(id);
     }
 
+    public async Task<List<BookResponse>> GetAllBooksAsync()
+    {
+        var books = await _bookRepository.GetAllBooksAsync();
+        return books.MapToContract().ToList();
+    }
+    
     public async Task<BookResponse> GetBookAsync(int id)
     {
         var isBookExists = await BookExistsAsync(id);

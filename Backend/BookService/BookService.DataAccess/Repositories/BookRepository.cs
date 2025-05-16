@@ -13,7 +13,15 @@ public class BookRepository : IBookRepository
     private readonly string _dbConnection;
     public BookRepository(IConfiguration configuration)
     {
-        _dbConnection = configuration.GetConnectionString("DefaultConnection");
+        var connectionString = string.IsNullOrEmpty(configuration.GetSection("ConnectionStrings")["DefaultConnection"]) 
+            ? configuration.GetConnectionString("DefaultConnection") 
+            : configuration.GetSection("ConnectionStrings")["DefaultConnection"];
+        
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new Exception("Connection string is null or empty.");
+        }
+        _dbConnection = connectionString;
     }
     
     private async Task<DbConnection> CreateConnectionAsync()
@@ -37,6 +45,13 @@ public class BookRepository : IBookRepository
         await connection.ExecuteAsync(Sql.DeleteBook, new { Id = id });
     }
 
+    public async Task<List<Book>> GetAllBooksAsync()
+    {
+        await using var connection = await CreateConnectionAsync();
+        var books = await connection.QueryAsync<Book>(@"SELECT ""Id"", ""Name"", ""Description"", ""Author"" FROM ""Books"";",new {});
+        return books.ToList();
+    }
+    
     public async Task<Book> GetBookAsync(int id)
     {
         await using var connection = await CreateConnectionAsync();
