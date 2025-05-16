@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.apiclient.bookstoreapp.presentation.login.LoginFragment"
+        android:label="Login">
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_login_to_main_menu"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.apiclient.bookstoreapp.presentation.register.RegisterFragment"
+        android:label="Register">
+        <action
+            android:id="@+id/action_register_to_main_menu"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.apiclient.bookstoreapp.presentation.menu.MainMenuFragment"
+        android:label="Main Menu">
+        <action
+            android:id="@+id/action_main_menu_to_books"
+            app:destination="@id/booksFragment" />
+        <action
+            android:id="@+id/action_main_menu_to_crud_book"
+            app:destination="@id/crudBookFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/booksFragment"
+        android:name="com.apiclient.bookstoreapp.presentation.books.BooksFragment"
+        android:label="Books">
+        <action
+            android:id="@+id/action_books_to_crudBook"
+            app:destination="@id/crudBookFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/crudBookFragment"
+        android:name="com.apiclient.bookstoreapp.presentation.books.CrudBookFragment"
+        android:label="Crud Book" />
+</navigation>
